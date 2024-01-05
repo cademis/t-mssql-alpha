@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    platform: linux/amd64
+    environment:
+      # Set the SA password
+      SA_PASSWORD: "Ms%24sql1234"
+      # Accept the SQL Server End User License Agreement
+      ACCEPT_EULA: "Y"
+      # Configure SQL Server for Express Edition
+      # MSSQL_PID: "Express"
+    ports:
+      # Map port 1433 on the host to port 1433 in the container
+      - "1433:1433"
+    volumes:
+      # Persist SQL Server data
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:
